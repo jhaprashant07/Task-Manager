@@ -1,0 +1,315 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top, not center vertically */
+    min-height: 100vh;
+    margin: 20px;
+    color: #333;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 50px; /* Space from the top */
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+}
+
+.task-input {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.task-input input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.task-input input:focus {
+    border-color: #007bff;
+}
+
+.task-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.task-input button:hover {
+    background-color: #0056b3;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.filters button {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #e0e0e0;
+}
+
+.filters button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    background-color: #fdfdfd;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    border-left: 5px solid transparent;
+    transition: background-color 0.3s ease, border-left-color 0.3s ease;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+#taskList li:last-child {
+    border-bottom: none;
+}
+
+#taskList li.completed {
+    border-left-color: #28a745;
+    background-color: #e6ffe6;
+}
+
+#taskList li.completed .task-text {
+    text-decoration: line-through;
+    color: #777;
+}
+
+#taskList li input[type="checkbox"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #28a745; /* Modern way to style checkbox */
+}
+
+.task-text {
+    flex-grow: 1;
+    font-size: 1.1em;
+    color: #333;
+    word-wrap: break-word; /* Ensure long task names wrap */
+    user-select: none; /* Prevent text selection on double-click */
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.task-actions .edit-btn {
+    color: #ffc107; /* Yellow */
+}
+.task-actions .edit-btn:hover {
+    color: #e0a800;
+}
+
+.task-actions .delete-btn {
+    color: #dc3545; /* Red */
+}
+.task-actions .delete-btn:hover {
+    color: #c82333;
+}
+
+/* Progress Section */
+.progress-section {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.progress-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.progress-bar-container {
+    width: 80%;
+    max-width: 400px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    height: 30px;
+    margin: 0 auto 15px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #28a745;
+    border-radius: 15px;
+    transition: width 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align text to the end of the bar if it's inside */
+}
+
+#progressText {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.7); /* Make text more readable on bar */
+}
+
+.progress-section p {
+    font-size: 1.1em;
+    margin: 8px 0;
+    color: #555;
+}
+
+.progress-section p span {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 25px;
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .task-input {
+        flex-direction: column;
+    }
+
+    .task-input button {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    #taskList li {
+        flex-wrap: wrap;
+    }
+
+    .task-actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}/* Add this to style.css */
+
+/* Target the task list scrollbar */
+#taskList {
+    max-height: 400px; /* Give it a fixed height to enable scrolling */
+    overflow-y: auto;
+    padding-right: 10px; /* Add space for the scrollbar to sit */
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+#taskList::-webkit-scrollbar {
+    width: 8px;
+}
+
+#taskList::-webkit-scrollbar-track {
+    background: #f4f7f6; /* Light background for the track */
+    border-radius: 10px;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+    background: #007bff; /* Primary color for the thumb */
+    border-radius: 10px;
+}
+
+#taskList::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}/* Animation for task removal */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        height: auto;
+        padding: 15px 20px;
+        margin-bottom: 8px;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+        height: 0;
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
+
+.deleting {
+    animation: fadeOut 0.4s ease-out forwards;
+}/* Add this to style.css */
+.no-tasks-message {
+    text-align: center;
+    color: #99aab5 !important;
+    font-style: italic;
+    padding: 30px !important;
+    background-color: #f9fbfd !important;
+    border: 2px dashed #e4e7ea;
+    border-radius: 8px;
+    margin-top: 20px;
+}

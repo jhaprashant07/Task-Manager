@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager with Progress</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+
+        <div class="task-input">
+            <input type="text" id="newTaskInput" placeholder="Add a new task...">
+            <button id="addTaskBtn">Add Task</button>
+        </div>
+
+        <div class="filters">
+            <button id="filterAll" class="active">All</button>
+            <button id="filterActive">Active</button>
+            <button id="filterCompleted">Completed</button>
+        </div>
+
+        <ul id="taskList">
+            </ul>
+
+        <div class="progress-section">
+            <h2>Your Progress</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <span id="progressText">0%</span>
+            </div>
+            <p>Total Tasks: <span id="totalTasks">0</span></p>
+            <p>Completed Tasks: <span id="completedTasks">0</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
