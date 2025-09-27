@@ -1,0 +1,322 @@
+/* --- Base Styles --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 20px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 35px 45px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 650px;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* --- Task Input Section --- */
+.task-input {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.task-input input {
+    flex-grow: 1;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1.1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-input input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.task-input button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+.task-input button:hover {
+    background-color: #2563eb;
+}
+
+.task-input button:active {
+    transform: scale(0.98);
+}
+
+/* --- Filters Section --- */
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.filters button {
+    background-color: #f8fafc;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #e2e8f0;
+}
+
+.filters button.active {
+    background-color: #10b981;
+    color: white;
+    border-color: #10b981;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+}
+
+/* --- Task List Section --- */
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar Styling (The "Cool" Part) */
+#taskList::-webkit-scrollbar {
+    width: 8px;
+}
+
+#taskList::-webkit-scrollbar-track {
+    background: #f0f4f8;
+    border-radius: 10px;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+    background: #3b82f6; 
+    border-radius: 10px;
+}
+
+#taskList::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #f0f4f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+#taskList li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#taskList li.completed {
+    border-left: 5px solid #10b981;
+    background-color: #f0fff4;
+}
+
+#taskList li.completed .task-text {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+#taskList li input[type="checkbox"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #10b981;
+}
+
+.task-text {
+    flex-grow: 1;
+    font-size: 1.1em;
+    color: #333;
+    user-select: none;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    transition: color 0.2s ease, transform 0.1s;
+}
+
+.task-actions button:active {
+    transform: scale(0.9);
+}
+
+.task-actions .edit-btn {
+    color: #f59e0b;
+}
+.task-actions .edit-btn:hover {
+    color: #d97706;
+}
+
+.task-actions .delete-btn {
+    color: #ef4444;
+}
+.task-actions .delete-btn:hover {
+    color: #dc2626;
+}
+
+/* Cool Animation for Deletion */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        height: auto;
+        padding: 15px 20px;
+        margin-bottom: 12px;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+        height: 0;
+        padding: 0;
+        margin-bottom: 0;
+        visibility: hidden;
+    }
+}
+
+.deleting {
+    animation: fadeOut 0.4s ease-out forwards;
+}
+
+/* Empty State Message (UX Improvement) */
+.no-tasks-message {
+    text-align: center;
+    color: #94a3b8 !important;
+    font-style: italic;
+    padding: 30px !important;
+    background-color: #f8fafc !important;
+    border: 2px dashed #e2e8f0;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* --- Progress Section --- */
+.progress-section {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.progress-section h2 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.progress-bar-container {
+    width: 90%;
+    max-width: 450px;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+    height: 35px;
+    margin: 0 auto 20px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #10b981;
+    border-radius: 20px;
+    transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#progressText {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    color: #333;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.progress-section p {
+    font-size: 1.1em;
+    margin: 8px 0;
+    color: #64748b;
+}
+
+.progress-section p span {
+    font-weight: 700;
+    color: #1e3a8a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 550px) {
+    .container {
+        padding: 25px 30px;
+    }
+
+    .task-input {
+        flex-direction: column;
+    }
+
+    .task-input input {
+        width: 100%;
+    }
+
+    .task-input button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
